@@ -1,4 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Vollkorn');
+
 body {
     font-family: 'Vollkorn', serif;
     font-size: 24px;
@@ -9,28 +10,11 @@ body {
     padding-bottom: 20px;
 }
 
-.insidediv{
-    position:absolute;
-    left:5%;
-}
 p {
     font-family: 'Vollkorn', serif;
     font-size: 24px;
-
 }
 
-input {
-    display: inline-block;
-    float: right;
-    margin-bottom: 20px;
-    width : 100%
-}
-
-select {
-    display: inline-block;
-    float: right;
-    margin-bottom: 20px;
-}
 
 footer {
     text-shadow: 2px 2px darkgrey;
@@ -52,40 +36,57 @@ footer {
     white-space: normal;
 }
 
-.CenteredDiv {
-    position: absolute;
-    top: 5%;
-    left: 25%;
+.PaddingHeader {
+    padding-top: 1em;
 }
 
-#RegBox {
+.RegBox {
     line-height: 1.6;
     background-color: lightgray;
     opacity: 0.9;
     border-radius: 25px;
-    margin:0;
-    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
     width: 600px;
-    position: relative;
-    top: 50%;
-    left: 25%;
+    height: auto;
 }
+
+.CenterRegBox {
+    width: 90%;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ContactRegBox {
+    width: 70%;
+    text-align: left;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #Welcome {
     text-align: center;
-    position: relative;
-    top: 10%;
-    margin: auto;
-    width: 40%;
 }
 
 #Registered {
-    position: absolute;
-    top: 10%;
-    left: 10%;
+    text-align: center;
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
-select,
 textarea {
-    max-width: 280px;
+    width: 75%;
+    margin-bottom: 20px;
+}
+
+select{
+    width: 20%;
+    margin-bottom: 20px;
+}
+
+form {
+    margin: 0 auto;
+    width: 75%;
 }

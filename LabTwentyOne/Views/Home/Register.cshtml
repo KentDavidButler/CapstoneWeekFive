@@ -1,24 +1,25 @@
-﻿
+﻿<div class="RegBox">
+    <div class="CenterRegBox">
 
+        <h2 class="PaddingHeader"><b>Fill in all fields to register</b></h2>
+        @if((TempData["message"] != null))
+        {<p>@Html.Encode(TempData["message"])</p>}
 
-<div id="RegBox">
-    <div>
-        <p><b>Fill in all fields to register</b></p>
         <form action="AddUser" method="post">
-            <p>
-                Pronoun :<select name="Pronoun">
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs</option>
-                    <option value="Ms.">Ms.</option>
-                    <option value="Ind.">Ind.</option>
-                    <option value="Mx.">Mx.</option>
-                </select>
-            </p>
-            <p><input name="FirstName" placeholder="First Name.." /></p>
-            <p><input name="LastName" placeholder="Last Name.." /></p>
-            <p><input name="email" type="email" placeholder="E-Mail Address.." /></p>
-            <p><input name="Phone" type="tel" placeholder="Telephone Number.." /></p>
-            <p><input name="Password" type="password" placeholder="Password.." /></p>
+            <select name="Pronoun" class="form-control">
+                <option selected disabled>Pronoun</option>
+                <option value="Mr.">Mr.</option>
+                <option value="Mrs.">Mrs</option>
+                <option value="Ms.">Ms.</option>
+                <option value="Ind.">Ind.</option>
+                <option value="Mx.">Mx.</option>
+            </select>
+            <input name="FirstName" placeholder="First Name.." class="form-control" required />
+            <input name="LastName" placeholder="Last Name.." class="form-control" required />
+            <input name="email" type="email" placeholder="E-Mail Address.." class="form-control" required />
+            <input name="Phone" type="tel" placeholder="Telephone Number.." class="form-control" />
+            <input name="Password" type="password" placeholder="Password.." class="form-control" required />
+            <input name="ConfirmPassword" type="password" placeholder="Confirm Password.." class="form-control" required />
 
             <input type="submit" />
 
