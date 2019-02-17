@@ -21,9 +21,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Register", "Register", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (ViewBag.CurrentUser != null)
+                    {
+                        <li>@Html.ActionLink("Shop", "Welcome", "Home")</li>
+                        <li>@Html.ActionLink("Cart", "Cart", "Home")</li>
+                        <li>@Html.ActionLink("Logout", "LogOut", "Home")</li>
+
+                    }
+                    @if (ViewBag.CurrentUser == null)
+                    {
+                        <li>@Html.ActionLink("Register", "Register", "Home")</li>
+                    }
+
+
                 </ul>
             </div>
         </div>
@@ -32,7 +42,8 @@
         @RenderBody()
         
         <footer>
-            <p>&copy; @DateTime.Now.Year - Big Homie Kent's Webby Debby</p>
+            <p id="about">@Html.ActionLink("About", "About", "Home") @Html.ActionLink("Contact", "Contact", "Home")</p>
+            <p> &copy; @DateTime.Now.Year - Big Homie Kent's Webby Debby</p>
         </footer>
     </div>
 

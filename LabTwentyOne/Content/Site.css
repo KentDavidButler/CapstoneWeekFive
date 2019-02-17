@@ -67,6 +67,13 @@ footer {
     margin-right: auto;
 }
 
+#about {
+    font-family: 'Vollkorn', serif;
+    font-size: 24px;
+    color: lightgray;
+    opacity: .8;
+}
+
 #Welcome {
     text-align: center;
 }

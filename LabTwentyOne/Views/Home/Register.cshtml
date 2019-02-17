@@ -5,25 +5,17 @@
         @if((TempData["message"] != null))
         {<p>@Html.Encode(TempData["message"])</p>}
 
-        <form action="AddUser" method="post">
-            <select name="Pronoun" class="form-control">
-                <option selected disabled>Pronoun</option>
-                <option value="Mr.">Mr.</option>
-                <option value="Mrs.">Mrs</option>
-                <option value="Ms.">Ms.</option>
-                <option value="Ind.">Ind.</option>
-                <option value="Mx.">Mx.</option>
-            </select>
-            <input name="FirstName" placeholder="First Name.." class="form-control" required />
-            <input name="LastName" placeholder="Last Name.." class="form-control" required />
-            <input name="email" type="email" placeholder="E-Mail Address.." class="form-control" required />
-            <input name="Phone" type="tel" placeholder="Telephone Number.." class="form-control" />
-            <input name="Password" type="password" placeholder="Password.." class="form-control" required />
-            <input name="ConfirmPassword" type="password" placeholder="Confirm Password.." class="form-control" required />
+         <form action="RegisteredUser" method="post">
+             <input name="FirstName" placeholder="First Name.." class="form-control" required />
+             <input name="LastName" placeholder="Last Name.." class="form-control" required />
+             <input name="Email" type="email" placeholder="E-Mail Address.." class="form-control" required />
+             <input name="Age" type="number" min="18" placeholder="Age.." class="form-control" required />
+             <input name="Password" type="password" placeholder="Password.." class="form-control" required />
+             <input name="ConfirmPassword" type="password" placeholder="Confirm Password.." class="form-control" required />
 
-            <input type="submit" />
+             <input type="submit" />
 
-        </form>
+         </form>
     </div>
 
 </div>
