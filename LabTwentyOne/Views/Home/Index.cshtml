@@ -1,26 +1,77 @@
 ﻿@{ViewBag.Title = "UserDetails";}
+@{ViewBag.Title = "ListItems";}
+@{ViewBag.Title = "CartItemsTotal";}
+@{ViewBag.Title = "CartTotalCost";}
 
-<div class="RegBox">
 
-    <div id="Welcome">
-        <h3>
-            Welcome to the<br />
-            <b>Frothy Clouds Coffee Shop!</b><br />
-        </h3>
 
-        @if (ViewBag.CurrentUser == null)
-        {
+@*<div id="Welcome">
+    <h3>
+        Welcome to the<br />
+        <b>Frothy Clouds Coffee Shop!</b><br />
+    </h3>*@
+
+@if (ViewBag.CurrentUser == null)
+{
+    <div class="RegBox">
+        <div id="Welcome">
+            <h3>Welcome to the</h3>
+            <h3><b>Frothy Clouds Coffee Shop!</b></h3>
             <p>Welcome Stranger there are two way to get to know you: </p>
             <p> @Html.ActionLink("Register", "Register", "Home")</p>
             <p>@Html.ActionLink("Login", "Login", "Home")</p>
-        }
-        else
-        {
-            @* Welcome user *@
-            <h2>Welcome, @ViewBag.CurrentUser.FirstName!</h2>
-            <p>Now that we know each other, we can get down to buisness.</p>
-        }
-
-
+        </div>
     </div>
-</div>
+}
+else
+{
+    <div class="RegBox2">
+        <div class="CenterRegBox">
+            @* Welcome user *@
+            <h2>Welcome, @ViewBag.CurrentUser.FirstName @ViewBag.CurrentUser.LastName!</h2>
+            <p>Now that we know each other, we can get down to buisness.</p>
+
+            <h2>List Items</h2>
+
+            <table class="table">
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in ViewBag.ItemsList)
+                {
+
+                    <tr>
+
+                        <td>@item.ItemName</td>
+                        <td>@item.Description</td>
+                        <td>@string.Format("{0:N2}", item.Price)</td>
+                        <td>
+                            <form action="/Home/AddItem" method="post">
+                                <input name="quantity" id="quantity" type="number" min="1" max="11" placeholder="Quantity" class="form-control" required />
+                                <input hidden name="itemName" id="@item.ItemName" value="@item.ItemName" />
+                                <input class="AddToCart" type="submit" value="Add To Cart" onclick="myFunction()" />
+                                @*<a href="/Home/AddItem?itemName=@item.ItemName">Add Item</a>    itemName*@
+                            </form>
+                        </td>
+                    </tr>
+
+                }
+            </table>
+
+        </div>
+    </div>
+}
+
+
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("quantity");
+        var y = document.getElementById("itemName");
+        alert(x + y + "Item/s has been added to cart");
+
+    }
+</script>

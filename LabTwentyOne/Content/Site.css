@@ -17,10 +17,9 @@ p {
 
 
 footer {
-    text-shadow: 2px 2px darkgrey;
     position: fixed;
     bottom: 0;
-    opacity: .5;
+    opacity: .8;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -40,60 +39,113 @@ footer {
     padding-top: 1em;
 }
 
-.RegBox {
-    line-height: 1.6;
-    background-color: lightgray;
-    opacity: 0.9;
-    border-radius: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 600px;
-    height: auto;
+@media screen and (max-width: 1199px) {
+    .RegBox {
+        line-height: 1.6;
+        background-color: lightgray;
+        opacity: 0.9;
+        border-radius: 25px;
+        margin-top: 140px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+        height: auto;
+    }
+
+    .RegBox2 {
+        line-height: 1.6;
+        background-color: lightgray;
+        opacity: 0.9;
+        border-radius: 25px;
+        margin-top: 140px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 800px;
+        height: auto;
+    }
 }
 
-.CenterRegBox {
-    width: 90%;
-    text-align: center;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
+@media screen and (min-width: 1200px) {
+    .RegBox {
+        line-height: 1.6;
+        background-color: lightgray;
+        opacity: 0.9;
+        border-radius: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 600px;
+        height: auto;
+    }
+
+    .RegBox2 {
+        line-height: 1.6;
+        background-color: lightgray;
+        opacity: 0.9;
+        border-radius: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 800px;
+        height: auto;
+    }
 }
 
-.ContactRegBox {
-    width: 70%;
-    text-align: left;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-}
+    .CenterRegBox {
+        width: 90%;
+        text-align: center;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-#about {
-    font-family: 'Vollkorn', serif;
-    font-size: 24px;
-    color: lightgray;
-    opacity: .8;
-}
+    .AddToCart {
+        width: auto;
+    }
 
-#Welcome {
-    text-align: center;
-}
+    .ContactRegBox {
+        width: 70%;
+        text-align: left;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-#Registered {
-    text-align: center;
-}
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-textarea {
-    width: 75%;
-    margin-bottom: 20px;
-}
+    .topcorner {
+        position: absolute;
+        opacity: .5;
+        right: 0;
+        padding: 10px;
+        background-color: lightgray;
+        border-radius: 25px;
+    }
 
-select{
-    width: 20%;
-    margin-bottom: 20px;
-}
+    #about {
+        color: lightgray;
+        text-shadow: none;
+        font-family: 'Vollkorn', serif;
+        font-size: 24px;
+        opacity: .8;
+    }
 
-form {
-    margin: 0 auto;
-    width: 75%;
-}
+    #Welcome {
+        text-align: center;
+    }
+
+    #Registered {
+        text-align: center;
+    }
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    textarea {
+        width: 75%;
+        margin-bottom: 20px;
+    }
+
+    select {
+        width: 20%;
+        margin-bottom: 20px;
+    }
+
+    form {
+        margin: 0 auto;
+        width: 75%;
+    }

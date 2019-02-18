@@ -23,9 +23,20 @@ namespace LabTwentyOne.Controllers
         List<Item> ShoppingCart = new List<Item>();
         List<User> UserList = new List<User>();
 
+        int CartItemsTotal = 0;
+        double CartTotalCost = 0.0;
+
         public ActionResult Index()
         {
+            ViewBag.ItemsList = ItemList;
             ViewBag.CurrentUser = (User)Session["CurrentUser"];
+            if (Session["CurrentUser"] != null)
+            {
+                ViewBag.CartItemsTotal = (int)Session["CartItemsTotal"];
+                ViewBag.CartTotalCost = (double)Session["CartTotalCost"];
+            }
+
+
             return View();
         }
 
@@ -46,6 +57,13 @@ namespace LabTwentyOne.Controllers
             {
                 return RedirectToAction("Register", new { message = "Error: Passwords did not match" });
             }
+            foreach (User user in UserList)
+            {// searches list for email address entered and checks if it exisists.
+                if (user.Email == newUser.Email)
+                {
+                    return RedirectToAction("Register", new { message = "Error: Email Already Exists" });
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -58,7 +76,9 @@ namespace LabTwentyOne.Controllers
                 Session["CurrentUser"] = newUser;
                 UserList.Add(newUser);
                 Session["AllUsers"] = UserList;
-                return RedirectToAction("Welcome");
+                Session["CartItemsTotal"] = CartItemsTotal;
+                Session["CartTotalCost"] = CartTotalCost;
+                return RedirectToAction("Index");
             }
             else
             {
@@ -92,8 +112,10 @@ namespace LabTwentyOne.Controllers
                     {
                         ViewBag.CurrentUser = user;
                         Session["CurrentUser"] = user;
+                        Session["CartItemsTotal"] = CartItemsTotal;
+                        Session["CartTotalCost"] = CartTotalCost;
 
-                        return RedirectToAction("Welcome");
+                        return RedirectToAction("Index");
                     }
                 }
             }
@@ -106,36 +128,44 @@ namespace LabTwentyOne.Controllers
             return View();
         }
 
-        public ActionResult Welcome()
-        {
-            ViewBag.CurrentUser = (User)Session["CurrentUser"];
-            ViewBag.ItemsList = ItemList;
-            return View();
-        }
 
-        public ActionResult ListItems()
+        public ActionResult AddItem(string itemName, int quantity)
         {
-            ViewBag.ItemsList = ItemList;
-            return View();
-        }
 
-        public ActionResult AddItem(string itemName)
-        {
+
             if (Session["ShoppingCart"] != null)
             {
                 ShoppingCart = (List<Item>)Session["ShoppingCart"];
             }
+            if (Session["CartItemsTotal"] != null)
+            {
+                CartItemsTotal = (int)Session["CartItemsTotal"];
+            }
+            if (Session["CartTotalCost"] != null)
+            {
+                CartTotalCost = (double)Session["CartTotalCost"];
+            }
+
 
             foreach (Item item in ItemList)
             {              //find item in list
                 if (item.ItemName == itemName)
                 {
-                    ShoppingCart.Add(item);
+                    for (int i = 0; i < quantity; i++)
+                    {
+                        ShoppingCart.Add(item);
+                        CartItemsTotal++;
+                        CartTotalCost += item.Price;
+                    }
+
                 }
             }
 
+
+            Session["CartItemsTotal"] = CartItemsTotal;
+            Session["CartTotalCost"] = CartTotalCost;
             Session["ShoppingCart"] = ShoppingCart;
-            return RedirectToAction("Welcome");
+            return RedirectToAction("Index");
         }
 
         public ActionResult Cart()
@@ -154,7 +184,7 @@ namespace LabTwentyOne.Controllers
                 total += item.Price;
             }
 
-            ViewBag.Total = total;
+            ViewBag.Total = string.Format("{0:N2}", total);
             return View();
         }
 
@@ -167,12 +197,14 @@ namespace LabTwentyOne.Controllers
 
         public ActionResult About()
         {
+            ViewBag.CurrentUser = (User)Session["CurrentUser"];
             ViewBag.Message = "Welcome to the Frothy Clouds Coffee application. After registering, we'll be able to take your order.";
 
             return View();
         }
         public ActionResult Contact()
         {
+            ViewBag.CurrentUser = (User)Session["CurrentUser"];
             ViewBag.Message = "How to reach the Clouds";
 
             return View();

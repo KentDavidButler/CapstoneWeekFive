@@ -1,4 +1,7 @@
 ﻿@{ViewBag.Title = "UserDetails";}
+@{ViewBag.Title = "CartItemsTotal";}
+@{ViewBag.Title = "CartTotalCost";}
+
 
 <div class="RegBox">
     <div class="CenterRegBox">
@@ -27,10 +30,11 @@
                 {
                     foreach (var item in ViewBag.ItemsList)
                     {
-                        <tr>
-                            <td>@item.ItemName</td>
-                            <td>@item.Price</td>
-                        </tr>
+                    <tr>
+                        <td>@item.ItemName</td>
+                        <td> ***** </td>
+                        <td>@string.Format("{0:N2}", item.Price)</td>
+                    </tr>
                     }
                     <tr>
                         <th>Total:</th>
