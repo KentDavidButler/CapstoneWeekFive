@@ -8,13 +8,15 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="topcorner">
-        @if (ViewBag.CurrentUser != null)
-        {
+    @if (ViewBag.CurrentUser != null)
+    {
+        <div class="topcorner">
+
             <p>Cart: @ViewBag.CartItemsTotal</p>
             <p>Current Total: @ViewBag.CartTotalCost</p>
-        }
-    </div>
+
+        </div>
+    }
 
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -48,7 +50,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        
+
         <footer>
             <p id="about">@Html.ActionLink("About", "About", "Home") @Html.ActionLink("Contact", "Contact", "Home")</p>
             <p> &copy; @DateTime.Now.Year - Big Homie Kent's Webby Debby</p>

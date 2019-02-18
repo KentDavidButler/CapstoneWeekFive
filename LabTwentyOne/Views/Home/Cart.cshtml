@@ -17,7 +17,7 @@
                 <tr>
                     <th>Item</th>
                     <th>Price</th>
-                    <th></th>
+                    <th>*****</th>
                 </tr>
                 @if (ViewBag.ItemsList == null)
                 {
@@ -32,8 +32,14 @@
                     {
                     <tr>
                         <td>@item.ItemName</td>
-                        <td> ***** </td>
                         <td>@string.Format("{0:N2}", item.Price)</td>
+                        <td>
+                            <form action="/Home/RemoveItem" method="post">
+                                <input hidden name="itemName" id="@item.ItemName" value="@item.ItemName" />
+                                <input class="Remove" type="submit" value="Remove from Cart" />
+                                @*<a href="/Home/AddItem?itemName=@item.ItemName">Add Item</a>    itemName*@
+                            </form>
+                        </td>
                     </tr>
                     }
                     <tr>

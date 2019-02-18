@@ -168,6 +168,38 @@ namespace LabTwentyOne.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult RemoveItem(string itemName)
+        {
+            if (Session["CurrentUser"] != null)
+            {
+                ViewBag.CartItemsTotal = (int)Session["CartItemsTotal"];
+                ViewBag.CartTotalCost = (double)Session["CartTotalCost"];
+            }
+            ViewBag.CurrentUser = (User)Session["CurrentUser"];
+
+            ShoppingCart = (List<Item>)Session["ShoppingCart"];
+            CartItemsTotal = (int)Session["CartItemsTotal"];
+            CartTotalCost = (double)Session["CartTotalCost"];
+            int i = 0;
+            foreach (Item TempItem in ShoppingCart)
+            {              //find item in list
+           
+                if (TempItem.ItemName == itemName)
+                {
+                    CartTotalCost -= TempItem.Price;
+                    CartItemsTotal--;
+                    break;
+                }
+                i++;
+            }
+            ShoppingCart.RemoveAt(i);
+
+            Session["CartItemsTotal"] = CartItemsTotal;
+            Session["CartTotalCost"] = CartTotalCost;
+            Session["ShoppingCart"] = ShoppingCart;
+            return RedirectToAction("Cart");
+        }
+
         public ActionResult Cart()
         {
             ViewBag.CurrentUser = (User)Session["CurrentUser"];
@@ -197,6 +229,11 @@ namespace LabTwentyOne.Controllers
 
         public ActionResult About()
         {
+            if (Session["CurrentUser"] != null)
+            {
+                ViewBag.CartItemsTotal = (int)Session["CartItemsTotal"];
+                ViewBag.CartTotalCost = (double)Session["CartTotalCost"];
+            }
             ViewBag.CurrentUser = (User)Session["CurrentUser"];
             ViewBag.Message = "Welcome to the Frothy Clouds Coffee application. After registering, we'll be able to take your order.";
 
@@ -204,6 +241,11 @@ namespace LabTwentyOne.Controllers
         }
         public ActionResult Contact()
         {
+            if (Session["CurrentUser"] != null)
+            {
+                ViewBag.CartItemsTotal = (int)Session["CartItemsTotal"];
+                ViewBag.CartTotalCost = (double)Session["CartTotalCost"];
+            }
             ViewBag.CurrentUser = (User)Session["CurrentUser"];
             ViewBag.Message = "How to reach the Clouds";
 
